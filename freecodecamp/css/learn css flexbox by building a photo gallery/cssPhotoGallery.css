@@ -1,4 +1,5 @@
 * {
+    /* Content of the element will shrink to make room for the padding and border */
     box-sizing: border-box;
   }
   
