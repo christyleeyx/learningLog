@@ -43,6 +43,7 @@ Sometimes there are no declarations defining the value of a property. The CSS ca
 - `*adjacent selector* (e.g. h1 + button)` - selects only the buttons that are immediately after a h1 
 - `*direct child selector* (e.g. div > li)` - selects ony the `<li>`s that are direct children of a `<div>` element
 - `*attribute selector* (h1[type/class/id="text"])` - selects all h1 elements where the type or class or id attribute is set to "text"
+- `child combinator selector (nav > ul)` - placed between two CSS selectors. It matches only those elements matched by the second selector that are the direct children of elements matched by the first.
 
 ### Pseudo Classes
 keywords added to a selector that specifies a special state of the selected element(S)
@@ -105,8 +106,22 @@ p::selection {
   background-color: yellow;
 }
 ```
+#### `::before`
+ It is often used to add cosmetic content to an element with the content property. It is inline by default.
 
+ ```css
+ /* adds a link emoji before an <a> link */
+ a::before {
+  content: '🔗';
+}
+ ```
+```css
+/* Populates question numbers with "Question #" preceding it, e.g. Question #4 */
+p::before{
+  content: "Question #";
+}
 
+```
 
 ## Typography
 
@@ -125,6 +140,14 @@ border-bottom: 2px solid #
 1. getting the ref link from google fonts
 2. linking
 3. referencing in selectors
+
+### SVG
+- scalable 
+- img {
+  width: max(250px, 25vw);
+}
+- if below 1000px, use 250px. if above 100px, 25% of viewport
+
 
 ### Box-sizing
 
@@ -146,3 +169,53 @@ Border-box vs Content-box
 > Generally `border-box` is easier to deal with while not dealing with the accuracy of your pixels. But when using `position: relative/absolute`, `content-box` allows the positioning values to be relative to the content, and independent of changes to border and padding sizes which is sometimes desirable
 
 ## Accessibility 
+
+### role attribute
+used to indicate the purpose behind an element on the page to assistive technologies. The role attribute is a part of the Web Accessibility Initiative (WAI), and accepts preset values.
+
+### aria-labelled by
+referenced in id
+The aria-labelledby attribute identifies the element (or elements) that labels the element it is applied to.
+
+### Linking each input to corresponding label
+It is important to link each input to the corresponding label element. This provides assistive technology users with a visual reference to the input.
+
+```css
+        <section role="region" aria-labelledby="student-info">
+          <h2 id="student-info">Student Info</h2>
+          <div class="info">
+          /* label references id of input with a for attribute */
+            <label for="student-name">Name</label>
+            <input id="student-name"/>
+          </div>
+          <div class="info">
+            <label for="email-add">Email Address</label>
+            <input id="email-add"/>
+          </div>
+          <div class="info">
+            <label for="dob">Date of Birth</label>
+            <input id="dob"/>
+          </div>
+        </section>
+```
+
+### Screen Readers only
+Some text are abbreviated and easily understandable by an average person, but accessibility if considered can hide labels that are meant to be read by screen readers only. 
+
+This pattern is to set the following CSS properties for sr-only class:
+
+```css
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+```
+
+
