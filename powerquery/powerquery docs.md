@@ -1,6 +1,6 @@
 # Power Query
 
-## Extract Transform Load (ETL)
+## Extract Transform Load (ETL) 
 ![alt](/powerquery/images/image.png)
 
 ## Extract 
@@ -14,6 +14,9 @@
 Under View, check "Column Quality", "Column Distribution" and "Column Profile", this allows for clearer analysis of anomalous data.
 
 ![alt text](/powerquery/images/image-3.png)
+
+> Take note that column profiling and distribution often times default to analysing first 1000 rows if dataset is large, to switch to whole dataset for accurate analysis:
+> ![alt text](/powerquery/images/image-21.png)
 
 **Column Distribution and Column Profile not showing for a column** 
 
@@ -141,3 +144,40 @@ Duplicate - Creates a copy and any changes made will not make any changes to the
 Reference - Is a continuation of the referenced source query. Any changes to the source query will affect the reference query
 
 `View` > `Query Dependencies` to check out!
+
+
+## Appending and Merging Queries
+- Consolidates data from multiple sources
+- Saves time by reducing manual manipulation (VLOOKUP etc.)
+- Enriches larger datasets by including addition columns from related tables
+
+**Append** - union - stack datasets of shared columns vertically
+**Merge** - joins - combine datasets horizontally based on common column(s)
+
+Join Types
+![join types](/powerquery/images/image-15.png)
+
+### Append
+1. Open Queries that you want to append
+2. Two type of append options:
+![alt text](/powerquery/images/image-16.png)
+  a. (default) Append Queries - will append onto hence edit file selected
+  b. Append Queries *as New* - will append queries into a newly created query
+  
+  For 2 tables:
+  ![alt text](/powerquery/images/image-17.png)
+  
+  For 3 or more tables:
+  ![alt text](/powerquery/images/image-18.png)
+
+### Merging
+1. Open Queries you want to append
+2. Select Query to merge on:
+   a. (default) Merge Queries - will merge to selected query
+   b. Merge queries *as New* - will merge queries into a newly created query
+
+![alt text](/powerquery/images/image-19.png)
+
+3. Fields of newly merged will only appear if selected and *expanded*
+   ![alt text](/powerquery/images/image-20.png)
+
