@@ -181,3 +181,139 @@ Join Types
 3. Fields of newly merged will only appear if selected and *expanded*
    ![alt text](/powerquery/images/image-20.png)
 
+
+## Custom Columns - using M (Data Mashup)
+- Functional programming language in Power Query
+- case-sensitive
+
+### Add column from examples
+1. Right click column that new column is to be based on, click "Add Column from Examples"
+![alt text](/powerquery/images/image-22.png)
+2. Key in some columns, the logic will automatically calculate and guess what you need
+3. If logic is incorrect/inaccurate, edit it in the editor
+
+### Add New Conditional Column
+1. Under Add Column Tab > Conditional Column
+2. Fill up conditional logic
+![alt text](/powerquery/images/image-23.png)
+
+### Custom Column
+1. Under Add Column Tab > Custom Column
+2. Key in M code needed
+   ![alt text](/powerquery/images/image-24.png)
+   ![alt text](/powerquery/images/image-25.png)
+
+### Advanced indexing
+
+#### Grouped index columns
+
+*Case study:* The pharmacy team has sent a new data file with all the medication information collected for each patient who visited the emergency department. It includes each PatientID, the types of medications they are using, and the total medications for each.
+
+Your task will be to enhance this dataset by adding a **grouped index medicationrankID** to count **unique medication types for each PatientID**, **sorted by top medication type by total medications**.
+
+----------
+
+
+1. Group the data by PatientID using the "All Rows" aggregation - `patientid_grouped`
+   - Select PatientID then select *Group By* from the Transform Tab
+   - Select *Advanced*
+   - Assign "patientid_grouped" new column name with _ALL rows_ operation for aggregation
+   - 
+   - ![alt text](/powerquery/images/image-26.png)
+
+
+2. Add a custom column `sortedgroup` to sort tables contained within the patientid_grouped column in descending order by total
+   - Add a Custom Column from the Add Column section of the ribbon.
+   - Recall that we want to sort the tables embedded within the patientid_grouped column.
+   - The M `Table.Sort()` function syntax requires the input of the table to be sorted, followed by an optional sort argument to specify the column name and sort criteria.
+   - 
+   - ![alt text](/powerquery/images/image-27.png)
+
+3. Add a custom column, `groupedindex` to add an index column (starting from 1) called medicationrankID to the tables contained within the sortedgroup column.
+    - Select Custom Column from the Add Column section of the ribbon.
+    - Recall that we want to add an index column to the tables embedded within the sortedgroup column.
+    - The M function `Table.AddIndexColumn()` requires multiple arguments, including the column containing tables to be referenced, the name of the new index to be created, and the number to start the index from.
+    - 
+    - ![alt text](/powerquery/images/image-30.png)
+
+`Patientid_grouped` column with embedded table:
+
+![alt text](/powerquery/images/image-28.png)
+
+`sortedgroup` column with embdded table with sorted total in descending order:
+
+![alt text](/powerquery/images/image-29.png)
+
+`groupedindex` column with embedded table with ranking/index of sorted total starting from 1
+
+![alt text](/powerquery/images/image-31.png)
+
+> Delete all columns except groupedindex and expand it 
+
+FINAL TABLE:
+![alt text](/powerquery/images/image-32.png)
+
+
+## M Formula Language
+
+- Case Sensitive
+- *Let* Clause
+   - Comma separated list of variable names or step identifiers
+   - Each step builds upon previous step by referring to its name 
+- *In* Clause
+  - Step listed after the "in" clause is the visible query output
+
+```javascript
+let 
+   Source = ""
+in
+   Source
+```
+
+### Value Types
+Primitive
+- single-part value (e.g. number, logical, text, or null)
+
+Structured
+- list (list = {1,2,3})
+- Record (Record = [Column1=1, Column2=2])
+- Table (#table({"ColumnA", "ColumnB"}, {{1,10}, {2,20}}))
+- Function
+
+### Custom Functions
+```javascript
+functionName = (Variable as Data Type, Variable as Data Type) => (Output Expression)
+```
+
+1. Open up query's advanced editor, add a new line after "Filtered rows" step and a single line comment to document 
+2. In the Advanced Editor, define a new custom function called “convertesiscore” 
+3. Add a new expression line named "Add scaled ESI score" in the Advanced Editor to add a new column to the table to invoke the new custom function, convertesiscore. Name the new column "scaledesiscore".
+4. Update the "in" clause to return the expression step with the new "scaledsciscore" column, then close the Advanced Editor.
+
+Note: you can use the Table.AddColumn() function to achieve this step.
+![alt text](/powerquery/images/image-38.png)
+
+### Built-in Functions
+1. Create a blank query (New Query > Other Sources > Blank Query)
+2. Into the editor: "`#shared`"
+3. A list of functions will appear which you can turn into a table in the left corner
+4. It is a clickable list where you can check the parameters and explanations of each function
+
+![alt text](/powerquery/images/image-33.png)
+
+## Query Parameters
+placeholders to dynamically pass values to a query, making them more flexible and reusable (dynamic filters)
+Case Study: Select a minimum score for ews score range
+1. Open a blank query and create a custom list from 0 to 12
+   ![alt text](/powerquery/images/image-34.png)
+
+2. Create a new parameter called "Select EWS Minimum Score" and specify suggested values to the ews score range list query you created. Remove required option.
+
+![alt text](/powerquery/images/image-35.png)
+
+3. In dept_b_master query, which is the query we want to filter, set a filter on the ewsscore field to return values equal to or higher than the Parameter
+
+![alt text](/powerquery/images/image-36.png)
+![alt text](/powerquery/images/image-37.png)
+
+4. Key in a parameter and the dept_b_master query will be filtered
