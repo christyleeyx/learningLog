@@ -1,0 +1,78 @@
+
+"keyboard.touchbar.ignored": [
+        "workbench.action.debug.start",
+        "workbench.action.debug.run"
+]
+
+"highlight.decorations": { "highlight.rangeBehavior": 1 },
+"highlight.regexes": {
+    "(==.*?==)": {
+        "filterLanguageRegex": "markdown",
+        "decorations": [ {
+            "backgroundColor": "yellow" }
+        ]
+    },
+    "(~~.*?~~)": {
+        "filterLanguageRegex": "markdown",
+        "decorations": [ {
+            "textDecoration": "line-through" }
+        ]
+    },
+    "(  +)$": {
+        "filterLanguageRegex": "markdown",
+        "regexFlags": "gm",
+        "decorations": [ {
+            "borderRadius": "4px",
+            "backgroundColor": "rgba(155,0,0,0.2)" }
+        ]
+    },
+    "(!!! \\w*)": {
+        "filterLanguageRegex": "markdown",
+        "regexFlags": "g",
+        "decorations": [ {
+            "backgroundColor": "rgb(205,240,234,0.5)" }
+        ]
+    },
+    "^(# )": {
+        "filterLanguageRegex": "markdown",
+        "regexFlags": "gm",
+        "decorations": [ {
+            "isWholeLine": "true",
+            "letterSpacing": "2px",
+            "backgroundColor": "rgba(190,174,226,0.4)",
+            "overviewRulerColor": "rgba(190,174,226,0.5)" }
+        ]
+    },
+    "^(## )": {
+        "filterLanguageRegex": "markdown",
+        "regexFlags": "gm",
+        "decorations": [ {
+            "isWholeLine": "true",
+            "letterSpacing": "2px",
+            "backgroundColor": "rgba(190,174,226,0.3)",
+            "overviewRulerColor": "rgba(190,174,226,0.4)" }
+        ]
+    },
+    "^(### )": {
+        "filterLanguageRegex": "markdown",
+        "regexFlags": "gm",
+        "decorations": [ {
+            "isWholeLine": "true",
+            "letterSpacing": "1px",
+            "backgroundColor": "rgba(190,174,226,0.2)",
+            "overviewRulerColor": "rgba(190,174,226,0.3)" }
+        ]
+    },
+    "^(#### )": {
+        "filterLanguageRegex": "markdown",
+        "regexFlags": "gm",
+        "decorations": [ {
+            "isWholeLine": "true",
+            "letterSpacing": "1px",
+            "backgroundColor": "rgba(190,174,226,0.1)",
+            "overviewRulerColor": "rgba(190,174,226,0.2)" }
+        ]
+    }
+}
+
+"markdown.styles": [ "style.css" ]

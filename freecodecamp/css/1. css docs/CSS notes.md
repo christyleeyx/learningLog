@@ -8,6 +8,18 @@ Main useful resources:
 
 2. [W3 Schools CSS References](https://www.w3schools.com/cssref/index.php)
 
+## Display Properties
+![alt text](image.png)
+
+### Inline
+Width & height are ignored. Margin & padding push other elements away horizontally but not vertically.
+
+### Block
+Block elements break the flow of a document. Width, Height, Margin & Padding are respected
+
+### Inline-Block
+Behaves like an inline element except width. Height, margin & padding are respected.
+
 ## Selectors
 
 ```css
