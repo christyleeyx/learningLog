@@ -1,22 +1,22 @@
 <link rel="stylesheet" href="styles.css">
 
-# CSS Notes{.b}
+# CSS Notes
 
 This is a slow accumulation of my CSS concepts compiled from various resources.
 
-!!! Main useful resources
+Main Resources: 
 
 1. [MDN Web Docs / CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 2. [W3 Schools CSS References](https://www.w3schools.com/cssref/index.php)
 
-## Display Properties {.o}
+## Display Properties
 ![alt text](image.png)
 
-### Inline {.g}
+### Inline
 Width & height are ignored. Margin & padding push other elements away horizontally but not vertically.
 
-### Block {.g}
+### Block
 Block elements break the flow of a document. Width, Height, Margin & Padding are respected
 
 ### Inline-Block
@@ -147,7 +147,7 @@ border-bottom: 2px solid #
 
 ### letter-spacing
 
-### rem
+### rem, em 
 
 ### Adding google fonts to your sheet
 
@@ -231,5 +231,20 @@ This pattern is to set the following CSS properties for sr-only class:
     border: 0;
 }
 ```
+
+// to be added 
+
+## Other CSS Properties
+[ ]  rgba
+![alt text](image-1.png)
+- only affects background color, not text element
+- hexadecimal can be used, last two digits, 00 to FF
+
+
+[ ]  opacity
+- applies to all elements within div
+
+
+
 
 
