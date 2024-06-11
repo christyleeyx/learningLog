@@ -1,12 +1,4 @@
-<style>
-.o { background-color: rgb(253,111,65) }
-.g { background-color: rgb(124,201,71) }
-.b { background-color: rgb(70,177,249) }
-.c { background-color: rgb(102,217,239) }
-.m { background-color: rgb(174,129,255) }
-.y { background-color: rgb(247,207,11) }
-.bm {background-color: rgb(127,125,248)}
-</style>
+<link rel="stylesheet" href="styles.css">
 
 # CSS Notes{.b}
 
