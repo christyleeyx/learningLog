@@ -1,20 +1,30 @@
-# CSS Notes
+<style>
+.o { background-color: rgb(253,111,65) }
+.g { background-color: rgb(124,201,71) }
+.b { background-color: rgb(70,177,249) }
+.c { background-color: rgb(102,217,239) }
+.m { background-color: rgb(174,129,255) }
+.y { background-color: rgb(247,207,11) }
+.bm {background-color: rgb(127,125,248)}
+</style>
+
+# CSS Notes{.b}
 
 This is a slow accumulation of my CSS concepts compiled from various resources.
 
-Main useful resources:
+!!! Main useful resources
 
 1. [MDN Web Docs / CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
 
 2. [W3 Schools CSS References](https://www.w3schools.com/cssref/index.php)
 
-## Display Properties
+## Display Properties {.o}
 ![alt text](image.png)
 
-### Inline
+### Inline {.g}
 Width & height are ignored. Margin & padding push other elements away horizontally but not vertically.
 
-### Block
+### Block {.g}
 Block elements break the flow of a document. Width, Height, Margin & Padding are respected
 
 ### Inline-Block
