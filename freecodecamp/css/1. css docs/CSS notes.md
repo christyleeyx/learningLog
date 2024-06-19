@@ -379,6 +379,8 @@ Targets one element in spite of other flex alignmen
 
 ### Flex sizing
 
+shorthand: /* Three values: flex-grow | flex-shrink | flex-basis */
+
 #### Flex-basis
 
 Defines the initial size of an element before additional space is distributed. Flex basis might alter width or height according to its flex-direction, row or column respectively.
@@ -396,8 +398,35 @@ set a min-width/max-width to prevent this behaviour
 
 ![alt text](image-9.png)
 
-`flex-grow: 2;`: when number is not 1, the grow behaviour will adjust relative to the other items, e.g. an
+`flex-grow: 2;`: when number is not 1, the grow behaviour will adjust relative to the other items, e.g. an item of flex-grow: 2 will take up twice of the extra space compared to an item of flex-grow: 1
 
 #### Flex-shrink
-If items are larger than the container, they shrink according to the flex-shrink
+
+Works the same way as flex-shrink, if items are larger than the container, they shrink according to the flex-shrink.
+
+
+## Media queries 
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/@media
+
+```css
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {...}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {...}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {...}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {...}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {...}
+```
+
+note: media queries can be overwritten and hence the order matters, should be written in increasing min-width or decreasing max-width
+
+
 
