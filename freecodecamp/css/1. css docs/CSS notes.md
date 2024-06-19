@@ -49,11 +49,11 @@ Sometimes there are no declarations defining the value of a property. The CSS ca
 
 ----------
 
-- `*universal selectors* (*)`
-- `*element selector* (buttons, h1, h2, p)`
-- `*id selector* (#id)` - can only be applied to one element
-- `*class selector* (.class)` - can be used repeatedly
-- `*descendant selector* (e.g. li a)` `- selecting descendents
+- `universal selectors (*)`
+- `element selector (buttons, h1, h2, p)`
+- `id selector (#id)` - can only be applied to one element
+- `class selector (.class)` - can be used repeatedly
+- `descendant selector*(e.g. li a)` `- selecting descendents
 - `*adjacent selector* (e.g. h1 + button)` - selects only the buttons that are immediately after a h1 
 - `*direct child selector* (e.g. div > li)` - selects ony the `<li>`s that are direct children of a `<div>` element
 - `*attribute selector* (h1[type/class/id="text"])` - selects all h1 elements where the type or class or id attribute is set to "text"
@@ -235,16 +235,169 @@ This pattern is to set the following CSS properties for sr-only class:
 // to be added 
 
 ## Other CSS Properties
-[ ]  rgba
+### rgba / alpha channel 
 ![alt text](image-1.png)
 - only affects background color, not text element
 - hexadecimal can be used, last two digits, 00 to FF
 
 
-[ ]  opacity
+### opacity
 - applies to all elements within div
 
+----------
+
+### position 
+- sets how an element is positioned in a document `top`, `bottom`, `left`, `right` properties determine the final location of positioned elements
+
+####1. `: static`
+
+Element is positioned according to the normal flow of the document. The `top`, `bottom`, `left`, `right`, `z-index` properties have no effect. 
+
+#### 2. `:relative`
+
+Element is positioned according to the normal flow of the document and then offset relative to itself based on `top`, `bottom`, `left`, `right`. Other elements are not affected. Space is still given to the element as if it were static. 
+
+![alt text](image-2.png)
+
+`position: relative;
+top: 50px; left: 50px;`
+
+#### 3. `:absolute`
+
+The element is removed from the normal document flow, and *no space* is created for the element in the page layout. The element is positioned relative to its **closest positioned ancestor** (if any) or to the initial containing block. 
+
+*what does **closest positioned ancestor** mean?*
+- the ancestor that has a position set for example to relative, and it is the least number of nests away 
+- the element will start shifting `top`, `bottom`, `left`, `right` from the top left corner of that div container or element with position: relative
+
+final position is determined by `top`, `bottom`, `left`, `right`.
+
+![alt text](image-3.png)
+
+yellow box is positioned relative to the initial containing block
+
+`position: absolute;
+top: 1px; left: 1px;`
 
 
+#### 4. `:fixed`
 
+Element is removed from normal document flow, no space is created for the element in the page layout. The element is positioned to its initial containing block, which is the viewport in the case of visual media. 
+
+final position is determined by `top`, `bottom`, `left`, `right`.
+
+The element stays in the same position throughout every page and scrolling. 
+
+#### 5. `:sticky`
+
+Element is positioned according to the normal flow of the document, and then offset relative to its nearest scrolling ancestor and containing block. final position is determined by `top`, `bottom`, `left`, `right`.
+
+The element goes into its fixed position once containing block is out of scroll.
+
+----------
+
+### CSS Transitions
+
+Transitions enable you to define the transition between two states of an element. Different states may be defined using pseudo-classes like :hover or :active or dynamically set using JavaScript.
+
+>Transition: Property Name | Duration |  Timing Function |Delay
+
+- Property names: background-color, border-radius...
+- Timing function: ease-in, linear, [site for timing functions](https://easings.net)
+
+----------
+
+### CSS Transforms
+
+Scales, skews or translates elements. 
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/transform
+
+
+----------
+
+## Flexbox
+One dimensional layout method for laying out items in rows/columns
+
+https://flexboxfroggy.com/
+
+### Flex-direction
+
+![alt text](image-4.png)
+
+**Main Axis** - `row`, `row-reverse`,  `column`, `column-reverse`
+
+reverse: takes the elements and displays the order in reverse
+
+![alt text](image-5.png)
+![alt text](image-6.png)
+
+**Cross axis** - perpendicular to the main axis
+
+### Justify-content
+
+Adjusts content according to the MAIN AXIS
+
+`start`/`flex-start`: pack (flex) items at the start 
+`end`/`flex-end`: pack (flex) items at the end 
+`center`: pack items in the center
+`space-between`: Distribute items evenly, first item is flushed to the start and last is flushed to the end 
+`space-around`: Distribute items evenly, start and end gaps are half the size of the space between each items
+`space-evenly`: Distribute items evenly, start, in-between, and end gaps have equal sizes
+`stretch`: Distribute items evenly, stretch 'auto'-sized items to fit the container
+
+### Align-Items
+
+Adjusts content according to the CROSS AXIS
+
+`start`: items are packed towards cross start edge 
+`end`: items are packed towards cross end edge 
+`center`: itmes are centered within the line on the cross-axis
+`baseline`: all flex-items are aligned such that their flex-container baselines align
+
+![alt text](image-7.png)
+
+### flex-wrap
+
+Sets whether flex items are forced onto one line or can wrap onto multiple lines
+
+`nowrap`: flex items are laid out in a single line
+`wrap`: flex items break into multiple lines. Cross-start is depending on flex-direction
+`wrap-reverse`: behaves same as wrap but cross-start and cross-end are permuted
+
+### Align-content
+
+Distributes space between **multi-lined** flexed-contents in cross-axis. It has no effect for single line flex items.
+
+`start`, `end`, `space-around`, `space-between`, `space-evenly`
+
+### Align-self
+
+Targets one element in spite of other flex alignmen
+
+![alt text](image-8.png)
+
+### Flex sizing
+
+#### Flex-basis
+
+Defines the initial size of an element before additional space is distributed. Flex basis might alter width or height according to its flex-direction, row or column respectively.
+
+e.g. if flex-basis: 400px, each content will be 400px in height if arranged in a column, and 400px in width if arranged in a row
+
+#### Flex-grow
+
+Controls the amount of available space an element should take up as page size changes. Accepts a unit-less number.
+
+`flex-grow: 1;` takes up all additional space, if more than one element has flex-grow: 1, the space is evenly distributed
+
+However, this is how a spillover would look like:
+set a min-width/max-width to prevent this behaviour
+
+![alt text](image-9.png)
+
+`flex-grow: 2;`: when number is not 1, the grow behaviour will adjust relative to the other items, e.g. an
+
+#### Flex-shrink
+If items are larger than the container, they shrink according to the flex-shrink
 
